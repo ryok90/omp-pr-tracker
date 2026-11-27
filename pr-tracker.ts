@@ -23,6 +23,10 @@ const PUSH_TARGET = /^To\s+(\S+)/;
 // ` * [new branch]  a -> b`, `   1a2b..3c4d  a -> b`, ` + 1a2b...3c4d a -> b (forced update)`
 const PUSHED_REF = /^\s*[*+ ]?\s*(?:\[new branch\]|[0-9a-f]+\.\.\.?[0-9a-f]+)\s+\S+\s+->\s+(\S+)/;
 const GITHUB_REMOTE = /github\.com[:/]([\w.-]+)\/([\w.-]+?)(?:\.git)?\/?$/;
+// GitHub's PR state colors (Primer dark: fgColor-muted, fgColor-open, fgColor-done).
+const GITHUB_DRAFT = "#9198a1";
+const GITHUB_OPEN = "#3fb950";
+const GITHUB_MERGED = "#ab7df8";
 
 interface PushedBranch {
 	repo: string;
@@ -153,12 +157,12 @@ export default function prTracker(pi: ExtensionAPI): void {
 	function stateLabel(ctx: ExtensionContext, meta: PrMetadata | undefined): string {
 		const theme = ctx.ui.theme;
 		if (!meta) return theme.fg("dim", "…     ");
-		if (meta.isDraft && meta.state === "OPEN") return theme.fg("warning", "DRAFT ");
+		if (meta.isDraft && meta.state === "OPEN") return paintHex(GITHUB_DRAFT, "DRAFT ");
 		switch (meta.state) {
 			case "OPEN":
-				return theme.fg("success", "OPEN  ");
+				return paintHex(GITHUB_OPEN, "OPEN  ");
 			case "MERGED":
-				return theme.fg("accent", "MERGED");
+				return paintHex(GITHUB_MERGED, "MERGED");
 			default:
 				return theme.fg("muted", meta.state.padEnd(6));
 		}
