@@ -41,3 +41,14 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm publish --provenance --access public
+
+  # Pins the new release in the ryok90-omp marketplace. GITHUB_TOKEN can't reach another repo, so
+  # this uses a fine-grained PAT scoped to ryok90/omp-plugins with Actions: read and write.
+  sync-catalog:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - run: gh workflow run sync.yml --repo ryok90/omp-plugins
+        env:
+          GH_TOKEN: ${{ secrets.OMP_PLUGINS_DISPATCH_TOKEN }}
