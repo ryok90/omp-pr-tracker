@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/ryok90/omp-pr-tracker/compare/v1.2.1...v1.2.2) (2026-11-27)
+
+
+### Bug Fixes
+
+* restore a single space between state icon and label ([#11](https://github.com/ryok90/omp-pr-tracker/issues/11)) ([38aa784](https://github.com/ryok90/omp-pr-tracker/commit/38aa78424f39303b793aa517126fb79c8c978d76))
+
 ## [1.2.1](https://github.com/ryok90/omp-pr-tracker/compare/v1.2.0...v1.2.1) (2026-11-27)
 
 

@@ -1,6 +1,6 @@
 {
 	"name": "omp-pr-tracker",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "omp extension: track GitHub PRs opened or pushed to during a session",
 	"type": "module",
 	"license": "MIT",
