@@ -166,7 +166,7 @@ export default function prTracker(pi: ExtensionAPI): void {
 		// omp picks the `nerd` preset from a Glyph Protocol handshake or the user's symbolPreset;
 		// elsewhere these glyphs would draw as boxes, so they're shown only then.
 		const withIcon = (state: string, text: string): string =>
-			theme.symbols.preset === "nerd" ? `${STATE_ICONS[state] ?? " "} ${text}` : text;
+			theme.symbols.preset === "nerd" ? `${STATE_ICONS[state] ?? " "}  ${text}` : text;
 		if (!meta) return theme.fg("dim", withIcon("", "…     "));
 		const state = meta.isDraft && meta.state === "OPEN" ? "DRAFT" : meta.state;
 		const label = withIcon(state, state.padEnd(6));
