@@ -8,7 +8,15 @@ An [oh-my-pi (omp)](https://github.com/can1357/oh-my-pi) extension that lists th
 - **Pushes**: `git push` output (`To <remote>` + ref lines) on GitHub remotes, resolved to the branch's PR with `gh pr list --head`; and the `github` tool's `pr_push` op.
 - **Subagents**: PRs found by in-process subagents show up in the main session's list.
 
-Tracked PRs are saved as session entries, so they survive resume and rewinds. Each row shows state (`OPEN`, `DRAFT`, `MERGED`, …) and title.
+Tracked PRs are saved as session entries, so they survive resume and rewinds. Each row shows state (`OPEN`, `DRAFT`, `MERGED`, …) in GitHub's colors, and title.
+
+### State icons
+
+When omp uses Nerd Font symbols, each state is prefixed with GitHub's own Octicon (`git-pull-request-draft`, `git-pull-request`, `git-merge`, `git-pull-request-closed`). The plugin follows omp's symbol preset (`theme.symbols.preset`) instead of probing the terminal:
+
+- omp switches to the `nerd` preset by itself when the terminal confirms Nerd Font support (Glyph Protocol), or when you set `symbolPreset: nerd`.
+- With `unicode` or `ascii`, labels are shown without icons, so terminals lacking the glyphs never show boxes.
+- Icons show as boxes? Your font predates these Octicons: install a current Nerd Font, or set `symbolPreset: unicode` to hide them.
 
 ## Commands
 

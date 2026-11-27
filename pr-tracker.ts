@@ -27,6 +27,13 @@ const GITHUB_REMOTE = /github\.com[:/]([\w.-]+)\/([\w.-]+?)(?:\.git)?\/?$/;
 const GITHUB_DRAFT = "#9198a1";
 const GITHUB_OPEN = "#3fb950";
 const GITHUB_MERGED = "#ab7df8";
+// GitHub's Octicons for the same states, as Nerd Font codepoints (nf-oct-*).
+const STATE_ICONS: Record<string, string> = {
+	DRAFT: "\u{f4dd}", // git-pull-request-draft
+	OPEN: "\u{f407}", // git-pull-request
+	MERGED: "\u{f419}", // git-merge
+	CLOSED: "\u{f4dc}", // git-pull-request-closed
+};
 
 interface PushedBranch {
 	repo: string;
@@ -156,15 +163,22 @@ export default function prTracker(pi: ExtensionAPI): void {
 
 	function stateLabel(ctx: ExtensionContext, meta: PrMetadata | undefined): string {
 		const theme = ctx.ui.theme;
-		if (!meta) return theme.fg("dim", "…     ");
-		if (meta.isDraft && meta.state === "OPEN") return paintHex(GITHUB_DRAFT, "DRAFT ");
-		switch (meta.state) {
+		// omp picks the `nerd` preset from a Glyph Protocol handshake or the user's symbolPreset;
+		// elsewhere these glyphs would draw as boxes, so they're shown only then.
+		const withIcon = (state: string, text: string): string =>
+			theme.symbols.preset === "nerd" ? `${STATE_ICONS[state] ?? " "} ${text}` : text;
+		if (!meta) return theme.fg("dim", withIcon("", "…     "));
+		const state = meta.isDraft && meta.state === "OPEN" ? "DRAFT" : meta.state;
+		const label = withIcon(state, state.padEnd(6));
+		switch (state) {
+			case "DRAFT":
+				return paintHex(GITHUB_DRAFT, label);
 			case "OPEN":
-				return paintHex(GITHUB_OPEN, "OPEN  ");
+				return paintHex(GITHUB_OPEN, label);
 			case "MERGED":
-				return paintHex(GITHUB_MERGED, "MERGED");
+				return paintHex(GITHUB_MERGED, label);
 			default:
-				return theme.fg("muted", meta.state.padEnd(6));
+				return theme.fg("muted", label);
 		}
 	}
 
