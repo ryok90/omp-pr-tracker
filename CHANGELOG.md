@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/ryok90/omp-pr-tracker/compare/v1.2.0...v1.2.1) (2026-11-27)
+
+
+### Bug Fixes
+
+* widen the gap between state icon and label ([#9](https://github.com/ryok90/omp-pr-tracker/issues/9)) ([e8e008f](https://github.com/ryok90/omp-pr-tracker/commit/e8e008f1a4cc6671a33c49aee6e3668e86750813))
+
 ## [1.2.0](https://github.com/ryok90/omp-pr-tracker/compare/v1.1.0...v1.2.0) (2026-11-27)
 
 
