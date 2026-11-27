@@ -27,6 +27,7 @@
 			"./pr-tracker.ts"
 		]
 	},
+	"packageManager": "pnpm@12.18.0",
 	"scripts": {
 		"check": "tsc -p ."
 	},

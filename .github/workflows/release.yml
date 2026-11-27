@@ -31,15 +31,16 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
           registry-url: https://registry.npmjs.org
-          cache: npm
-      # Trusted publishing (OIDC) needs npm >= 11.5.1.
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - run: pnpm run check
+      # Publish stays on the npm CLI: it's what trusted publishing (OIDC) documents; needs npm >= 11.5.1.
       - run: npm install -g npm@latest
-      - run: npm ci --ignore-scripts
-      - run: npm run check
       - run: npm publish --provenance --access public
 
   # Pins the new release in the ryok90-omp marketplace. GITHUB_TOKEN can't reach another repo, so
