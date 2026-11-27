@@ -27,11 +27,17 @@ Tracked PRs are saved as session entries, so they survive resume and rewinds. Ea
 ## Install
 
 ```sh
-git clone https://github.com/ryok90/omp-pr-tracker.git
-ln -s "$PWD/omp-pr-tracker/pr-tracker.ts" ~/.omp/agent/extensions/pr-tracker.ts
+omp plugin install github:ryok90/omp-pr-tracker
 ```
 
-Restart omp.
+Restart omp afterwards. Upgrade with `omp plugin upgrade omp-pr-tracker`; turn it off with `omp plugin disable omp-pr-tracker`.
+
+For local development, clone and link instead:
+
+```sh
+git clone https://github.com/ryok90/omp-pr-tracker.git
+omp plugin link ./omp-pr-tracker
+```
 
 ## Notes
 

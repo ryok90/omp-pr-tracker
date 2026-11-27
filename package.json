@@ -1,0 +1,18 @@
+{
+	"name": "omp-pr-tracker",
+	"version": "1.0.0",
+	"description": "omp extension: track GitHub PRs opened or pushed to during a session",
+	"type": "module",
+	"license": "MIT",
+	"author": "ryok90",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ryok90/omp-pr-tracker.git"
+	},
+	"homepage": "https://github.com/ryok90/omp-pr-tracker#readme",
+	"keywords": ["omp", "oh-my-pi", "omp-plugin", "github", "pull-requests"],
+	"files": ["pr-tracker.ts", "README.md", "LICENSE"],
+	"omp": {
+		"extensions": ["./pr-tracker.ts"]
+	}
+}
