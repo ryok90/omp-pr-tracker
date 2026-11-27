@@ -10,9 +10,28 @@
 		"url": "git+https://github.com/ryok90/omp-pr-tracker.git"
 	},
 	"homepage": "https://github.com/ryok90/omp-pr-tracker#readme",
-	"keywords": ["omp", "oh-my-pi", "omp-plugin", "github", "pull-requests"],
-	"files": ["pr-tracker.ts", "README.md", "LICENSE"],
+	"keywords": [
+		"omp",
+		"oh-my-pi",
+		"omp-plugin",
+		"github",
+		"pull-requests"
+	],
+	"files": [
+		"pr-tracker.ts",
+		"README.md",
+		"LICENSE"
+	],
 	"omp": {
-		"extensions": ["./pr-tracker.ts"]
+		"extensions": [
+			"./pr-tracker.ts"
+		]
+	},
+	"scripts": {
+		"check": "tsc -p ."
+	},
+	"devDependencies": {
+		"@oh-my-pi/pi-coding-agent": "^19.2.1",
+		"typescript": "^5.9.3"
 	}
 }
